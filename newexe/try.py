@@ -1,4 +1,3 @@
-
 class fish:
     list1 =[]
     list2 =[]
@@ -16,13 +15,11 @@ thefile = open('tes.py','w')
 bass = fish()
 bass.types_of_fish()
 size_of_fish(thefile)
-##
-##
+
 sunfish = fish()
 sunfish.types_of_fish()
 size_of_fish()
-##
-##
+
 pike = fish()
 pike.types_of_fish()
 size_of_fish()
