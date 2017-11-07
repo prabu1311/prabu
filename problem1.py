@@ -6,8 +6,7 @@ class MyHTMLParser(HTMLParser):
         print " ", tag
 
         for i in attr:
-            for j in i:
-                print j
+            print i
           
 # instantiate the parser and fed it some HTML
 feed= open("html.txt","r")
