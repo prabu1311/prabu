@@ -9,7 +9,7 @@ class MyHTMLParser(HTMLParser):
             for j in i:
                 print j
           
-# instantiate the parser and fed it some HTML
+# instantiate the parser and fed it some HTML. testing
 feed= open("html.txt","r")
 data=feed.read()
 parser = MyHTMLParser()
