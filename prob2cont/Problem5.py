@@ -5,13 +5,13 @@ script,file_name = argv
 
 class prob:
 
-    def check(self):
-	isextention =True
+    def check(self,fname):
+	self.fname = file_name
         if '.html' in file_name or'.txt' in file_name:
             print "you have entered the correct file"
         else:
             print "you have entered the wrong file"
-        return isextention
+        return fname
 
     def operation(self):
         self.TagList=[]
@@ -29,7 +29,7 @@ class prob:
                     self.TagList.append(ht[0])
                     self.AttrList.append(ht[1])
                     self.ValList.append(ht[2])
-                                 #dic = OrderedDict(zip(tagList, zip(attrlist, vallist)))  
+                       
                      
             else:
                 self.TagList.append(i)
@@ -65,13 +65,14 @@ class prob:
                 print self.AttrList[val],"=",self.ValList[val]
             else:
                 print "Enter the correct key"
+		return ischoice
                 self.display()
-        return ischoice
+        
         
         
 
 
 h = prob()
-h.check()
+h.check(file_name)
 h.operation()
 h.display()
