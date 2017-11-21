@@ -1,12 +1,14 @@
 import re
 import sys
+import time
+
 
 class prob():
     def check(self,fname):
+        begin = time.time()
         ischoice = True
-        
         if '.html' in fname or'.txt' in fname:
-            #print "you have entered the correct file"
+            print "you have entered the correct file"
             ischoice = True
         else:
             print "you have entered the wrong file"
@@ -14,7 +16,10 @@ class prob():
         fopen=open(fname, "r")
         rf=fopen.read()    
         return rf,ischoice
-
+        end = time.time()
+        perfomence = end-begin
+        print perfomence
+    
     def operation(self,rf):
         ischoice = True
         try:
@@ -44,7 +49,13 @@ class prob():
     def display(self):
         ischoice = True
         try:
-            choice=int(raw_input("Enter your choice 1,2,3,4"))
+            choice=int(raw_input("""
+    1: tags,
+    2: attributes,
+    3: attribute values,
+    4:for search attribute value,
+    5:exit
+        Enter your choice:"""))
         
             if choice==1:
                 for tag in self.TagList:
@@ -73,7 +84,8 @@ class prob():
             ischoice == False 
 
         return ischoice
-                   
+    
+#start_time = time.time()   
 if __name__== '__main__':
     if len(sys.argv)>1:
         h = prob()
@@ -82,7 +94,7 @@ if __name__== '__main__':
             val1,val2=h.operation(arg)
         if val2:
             h.display()
-
+#print("--- %s seconds ---" % (time.time() - start_time))
 
 
     
