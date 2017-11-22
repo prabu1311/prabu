@@ -34,10 +34,7 @@ class schedule:
                self.bestchoice.append(self.splitlist[l])
                
             elif self.splitlist[l][index] ==1:
-                print "no match"
-
-      
-        print self.bestchoice   
+                print "no match"   
 
        
     def check_arivtime(self):
@@ -45,6 +42,7 @@ class schedule:
         timelist = []
         index2 = 2 
         bestarivtime = []
+        finallist = []
         for k in range(0,len(self.bestchoice)):
             if self.bestchoice[k][index1] <= self.yourdesttime:
                 bestarivtime.append(self.bestchoice[k])
@@ -57,21 +55,14 @@ class schedule:
         
         if highval == self.yourdesttime:
             for r in range(0,len(bestarivtime)):
-                if bestarivtime[r] == highval:
-                    print bestarivtime[r]
-                else :
-                    print bestarivtime[r-1]
-            
-                
-                
-            print bestarivtime
-            
-                 
-        print "the best train to board is %r:" %bestarivtime         
-
-
-
-                
+                if bestarivtime[r][2] == highval:
+                    finallist.append(bestarivtime[r])
+                    if len(finallist)== 0:
+                        if bestarivtime[r][2] <= highval:
+                            finallist.append(bestarivtime[r])
+          
+             
+        print "the best train to board is %r:" %finallist       
 
 
 if __name__== '__main__':
