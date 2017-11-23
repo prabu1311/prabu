@@ -43,6 +43,7 @@ class schedule:
         index2 = 2 
         bestarivtime = []
         finallist = []
+        highval = ""
         for k in range(0,len(self.bestchoice)):
             if self.bestchoice[k][index1] <= self.yourdesttime:
                 bestarivtime.append(self.bestchoice[k])
@@ -61,8 +62,9 @@ class schedule:
                         if bestarivtime[r][2] <= highval:
                             finallist.append(bestarivtime[r])
           
-             
-        print "the best train to board is %r:" %finallist       
+            
+
+        print  "best train to board is %r:" %finallist       
 
 
 if __name__== '__main__':
