@@ -1,104 +1,95 @@
 import sys
+import xlrd
+from xlrd import open_workbook
 class schedule:
-    def user_input(self):
+    def user_input(self,istrue):
+        istrue = True
         self.yourstarttime = int(raw_input("Enter your start time:"))
-        self.yourstartplace = str(raw_input("Enter your start place:"))
-        self.yourdestplace = str(raw_input("Enter your dest place:"))
-        self.yourdesttime = int(raw_input("Enter your dest time:"))
-
-    def train_details(self):
-        l1 =[]
-        times= int(input("no.of train avilable"))
-        for i in range(times):
-            depttime = int(raw_input("Enter  train dept time:"))
-            l1.append(depttime)
-            startplace = str(raw_input("Enter train start place:"))
-            l1.append(startplace)
-            arvtime = int(raw_input("Enter your train arival time:"))
-            l1.append(arvtime)
-            destplace = str(raw_input("Enter train dest place:"))
-            l1.append(destplace)
-
-       
-        mylist = l1
-        self.splitlist = [mylist[x:x+4] for x in range(0, len(mylist),4)]
-        print self.splitlist
-        
-   
-    def check_arivplace(self):
-        index=3
-        self.bestchoice = []
-
-        for l in range(0,len(self.splitlist)):
-            if self.splitlist[l][index] == self.yourdestplace:
-               self.bestchoice.append(self.splitlist[l])
-               
-            elif self.splitlist[l][index] ==1:
-                print "no match"   
-
-       
-    def check_arivtime(self):
-        index1=2
-        timelist = []
-        index2 = 2 
-        bestarivtime = []
-        finallist = []
-        highval = ""
-        for k in range(0,len(self.bestchoice)):
-            if self.bestchoice[k][index1] <= self.yourdesttime:
-                bestarivtime.append(self.bestchoice[k])
+        if self.yourstarttime <= 24:
+            self.yourdesttime = int(raw_input("Enter your dest time:"))
+            if self.yourdesttime <= 24:
+                self.yourstartplace = str(raw_input("Enter your start place:"))
+                self.yourdestplace = str(raw_input("Enter your dest place:"))
+            else:
+                print "enter the time less than 24"
+                schedule.user_input()
                 
-            elif self.bestchoice[k][index1] == " ":
-                print "no match"
-        for m in range(0,len(bestarivtime)):
-            timelist.append(bestarivtime[m][index2])
-        highval = max(timelist)
-        
-        if highval == self.yourdesttime:
-            for r in range(0,len(bestarivtime)):
-                if bestarivtime[r][2] == highval:
-                    finallist.append(bestarivtime[r])
-                    if len(finallist)== 0:
-                        if bestarivtime[r][2] <= highval:
-                            finallist.append(bestarivtime[r])
-          
+        else:
             
+            print "enter the time less than 24"
+            istrue =False
+            schedule.user_input()
+        return istrue 
+            
+            
+             
+    def train_details(self,istrue):
+        istrue = True
+        col_value = []
+        values = []
+        l=""
+        wb = open_workbook('Expenses01.xlsx')
+        for s in wb.sheets():
+            for row in range(s.nrows):
+                for col in range(s.ncols):
+                    value = (s.cell(row,col).value)
+                    try : value = int(value)
+                    except : pass
+                    col_value.append(value)
+                    
+        values = [str(i) for i in col_value]
+        changed_list = [int(f) if f.isdigit() else f for f in values]
+        self.mylist = changed_list
+        splitlist = [self.mylist[x:x+4] for x in range(0, len(self.mylist),4)]
+        return istrue,splitlist
+        
+                   
+    def best_board(self,splitlist,istrue):
+        istrue = True
+        self.list1 = []
+        timelist = []
+        highval = ""
+        index = 0
+        index1 = 1
+        index2 = 2
+        index3 = 3
+        for l in range(1,len(splitlist)):
+                if splitlist[l][index1]== self.yourstartplace:
+                    if (splitlist[l][index2])<= self.yourdesttime:
+                        if splitlist[l][index3]== self.yourdestplace:
+                            self.list1.append(splitlist[l])
+                             
+        for m in range(0,len(self.list1)):
+            timelist.append(self.list1[m][index2])
+        self.highval = min(timelist)
+        return istrue,highval
+    
+    def finalchoice(self,highval,istrue):
+            istrue = True
+            finallist = []
+            ind2 = 2
+            for f in range(0,len(self.list1)):
+                if (self.list1[f][ind2]) == highval: 
+                    finallist.append(self.list1[f])
+                    print "final choice to board is:%s" %finallist
+                        
+                elif len(finallist)== 0:
+                    if (self.list1[f][ind2]) < highval:
+                        finallist.append(self.list1[f])
+                        print "final choice to board is:%s" %finallist
+                    
+                else:
+                    elval = len(finallist)== 0 
+                    if elval:
+                        print "no train avilable"
+            return istrue
+                    
 
-        print  "best train to board is %r:" %finallist       
-
-
+            
+                
 if __name__== '__main__':
     s = schedule()
-    s.user_input()
-    s.train_details()
-    s.check_arivplace()
-    s.check_arivtime()
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-               
-          
-    
-
-        
-
-          
-
-        
+    s.user_input(True)
+    arg,arg1 = s.train_details(True)
+    val,val1 = s.best_board(arg1,arg)
+    s.finalchoice(val1,val)
