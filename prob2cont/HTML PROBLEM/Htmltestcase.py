@@ -4,22 +4,16 @@ class Testprob (unittest.TestCase):
     
     def test_check(self):
         
-        value = p.check("html.txt")[1]
-        self.assertTrue(value,True)
+        value = p.check("htmlprogram.txt")[1]
+        self.assertEqual(value,True)
+        self.assertNotEqual(value,"ram.txt")
+        
   
     def test_operation(self):
-        result = p.operation("html.txt")[1]
-        self.assertTrue(result,True)
-  
-  
-        #self.assertEqual(result, )
-        
-    #def test_display(self):
-
-        #dis = p.display()
-        #check = True
-        #self.assertEqual(p.display(),check)
-    
+        result =open("htmlprogram.txt","r").read()
+        needed =p.operation("htmlprogram.txt")
+        self.assertNotEqual(needed[0],result)
+        self.assertEqual(needed[1],True)
 
 if __name__ == '__main__':
     p =prob()

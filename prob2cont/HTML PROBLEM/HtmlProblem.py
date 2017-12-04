@@ -7,15 +7,16 @@ class prob():
     def check(self,fname):
         begin = time.time()
         ischoice = True
-        if '.html' in fname or'.txt' in fname:
+        if fname.endswith('.html') or fname.endswith('.txt'):
             print "you have entered the correct file"
             ischoice = True
         else:
             print "you have entered the wrong file"
-            ischoice == False 
+              
+        
         fopen=open(fname, "r")
         rf=fopen.read()    
-        return rf,ischoice
+        return fname,ischoice
         end = time.time()
         perfomence = end-begin
         print perfomence
@@ -50,11 +51,11 @@ class prob():
         ischoice = True
         try:
             choice=int(raw_input("""
-    1: tags,
-    2: attributes,
-    3: attribute values,
-    4:for search attribute value,
-    5:exit
+1: tags,
+2: attributes,
+3: attribute values,
+4:for search attribute value,
+5:exit
         Enter your choice:"""))
         
             if choice==1:
@@ -92,8 +93,8 @@ if __name__== '__main__':
         arg,arg2=h.check(sys.argv[1])
         if arg2:
             val1,val2=h.operation(arg)
-        if val2:
-            h.display()
+            if val2:
+                h.display()
 #print("--- %s seconds ---" % (time.time() - start_time))
 
 

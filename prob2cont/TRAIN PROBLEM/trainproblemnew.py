@@ -68,24 +68,24 @@ class schedule:
         else:
             for m in range(0,len(list1)):
                 self.timelist.append(list1[m][index2])
-                highval = min(self.timelist)
+                minval = min(self.timelist)
         print list1        
-        return istrue,highval,list1
+        return istrue,minval,list1
     
     
     
-    def finalchoice(self,highval,list1):
+    def finalchoice(self,minval,list1):
             istrue = True
             finallist = []
             ind2 = 2
            
             for f in range(0,len(list1)):
-                if list1[f][ind2] >= highval:
+                if list1[f][ind2] >= minval:
                     finallist.append(list1[f])
                     print "final choice to board is:%s" %finallist
                     break
                 elif len(finallist)== 0:
-                    if (list1[f][ind2]) < highval:        
+                    if (list1[f][ind2]) < minval:        
                         finallist.append(list1[f])
                         print "final choice to board is:%s" %finallist
                         
