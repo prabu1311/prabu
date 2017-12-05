@@ -29,9 +29,3 @@ if __name__ == '__main__':
     p = Schedule()
     unittest.main()
 
-
-
-##result =open("htmlprogram.txt","r").read()
-##        needed =html.operation("htmlprogram.txt")
-##        self.assertNotEqual(needed[0],result)
-##        self.assertEqual(needed[1],True)

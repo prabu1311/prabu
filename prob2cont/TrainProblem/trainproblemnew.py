@@ -63,8 +63,7 @@ class Schedule:
         except :
             boarding = False
             pass
-            
-               
+                  
         if len(list1) == 0:
             print "no train avilable"
             
@@ -73,8 +72,6 @@ class Schedule:
                 self.timelist.append(list1[num][index2])
                 minval = min(self.timelist)        
         return boarding,minval,list1
-    
-    
     
     def finalchoice(self,minval,list1):
             userchoice = True
@@ -98,8 +95,7 @@ class Schedule:
                         print "no train avilable"
                    
             return userchoice
-            
-                
+                         
 if __name__== '__main__':
     s = Schedule()
     boolean,wholelist = s.train_details(True)
