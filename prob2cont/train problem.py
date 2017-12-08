@@ -42,6 +42,7 @@ class schedule:
         self.mylist = changed_list
         splitlist = [self.mylist[x:x+4] for x in range(0, len(self.mylist),4)]
         return istrue,splitlist
+    
         
                    
     def best_board(self,splitlist,istrue):
