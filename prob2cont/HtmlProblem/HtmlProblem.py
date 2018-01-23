@@ -2,10 +2,13 @@ import re
 import sys
 import time
 
+
 class Htmlproblem():
+
     def check_input(self,fname):
         begin = time.time()
         userinput = True
+        fname = htmlprogram.txt
         if fname.endswith('.html') or fname.endswith('.txt'):
             print "you have entered the correct file"
             
@@ -77,6 +80,7 @@ class Htmlproblem():
             displaychoice == False
         return displaychoice
        
+
 if __name__== '__main__':
     if len(sys.argv)>1:
         html = Htmlproblem()

@@ -44,7 +44,7 @@ class Schedule:
                 ls.append(j)
                          
         splitlist = [ls[x:x+4] for x in range(0, len(ls),4)]
-        print splitlist
+        #print splitlist
         return details,splitlist
     
         
@@ -69,7 +69,7 @@ class Schedule:
         except :
             boarding = False
             pass
-        print list1          
+        #print list1          
         if len(list1) == 0:
             print "no train avilable"
             
@@ -77,7 +77,7 @@ class Schedule:
             for num in range(0,len(list1)):
                 self.timelist.append(list1[num][index2])
                 minval = min(self.timelist)
-        print minval        
+        #print minval        
         return boarding,minval,list1
 
     
@@ -88,7 +88,7 @@ class Schedule:
             for f in range(0,len(list1)):
                 if list1[f][ind2] >= minval:
                     print "final choice to board is:%r" %list1[f][0] 
-                    print "your train is departing from your stauion at %r" 
+                    print "your train is departing from your stauion at %r" %list1[f] 
                     break
                 elif len(finallist)== 0:
                     if (list1[f][ind2]) < minval:        
